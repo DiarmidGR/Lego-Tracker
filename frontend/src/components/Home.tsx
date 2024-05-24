@@ -2,6 +2,7 @@ import { removeToken } from "./Auth";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import getSets from "../services/api";
+import SetsGrid from "./SetsGrid";
 
 function Home() {
   let navigate = useNavigate();
@@ -14,7 +15,7 @@ function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem("token"); // Replace with your actual JWT token
+      const token = localStorage.getItem("token");
 
       try {
         const data = await getSets(token);
@@ -29,11 +30,7 @@ function Home() {
   return (
     <div>
       <button onClick={handleSignOut}>Sign Out</button>
-      <ul>
-        {inventorySets.map((set: any) => (
-          <li key={set.set_num}>{set.name}</li> // Adjust based on your data structure
-        ))}
-      </ul>
+      <SetsGrid items={inventorySets}></SetsGrid>
     </div>
   );
 }
