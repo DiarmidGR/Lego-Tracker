@@ -28,10 +28,10 @@ function Home() {
     fetchData();
   }, []);
   return (
-    <div>
-      <button onClick={handleSignOut}>Sign Out</button>
+    <>
+      {/* <button onClick={handleSignOut}>Sign Out</button> */}
       <SetsGrid items={inventorySets}></SetsGrid>
-    </div>
+    </>
   );
 }
 

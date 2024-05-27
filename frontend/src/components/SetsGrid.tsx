@@ -3,7 +3,7 @@ import "./SetsGrid.css";
 
 const SetsGrid = ({ items }: any) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 40; // 8x5 grid
+  const itemsPerPage = 42; // 8x5 grid
   const [filterValue, setFilterValue] = useState("");
 
   const filteredItems = items.filter((item: any) =>
@@ -31,13 +31,22 @@ const SetsGrid = ({ items }: any) => {
   };
 
   return (
-    <div>
+    <div className="grid-container">
       <input
         type="text"
         placeholder="Filter by set_num"
         value={filterValue}
         onChange={handleFilterChange}
       />
+      <div className="grid-nav">
+        <button onClick={prevPage} disabled={currentPage === 0}>
+          Prev
+        </button>
+        <span>{`Page ${currentPage + 1} of ${totalPages}`}</span>
+        <button onClick={nextPage} disabled={currentPage === totalPages - 1}>
+          Next
+        </button>
+      </div>
       <div className="grid">
         {/* Placeholder div to maintain consistent grid cell size */}
         {currentItems.length === 0 && (
